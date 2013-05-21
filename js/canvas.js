@@ -18,12 +18,21 @@ var thx = thx || {};
         canvas.setAttribute('width', options.width);
         canvas.setAttribute('height', options.height);
         return canvas;
-    }
+    };
     
     thx.copyVideoToCanvas = function(video, canvas) {
         var ctx = canvas.getContext('2d');
         var width = canvas.getAttribute('width');
         var height = canvas.getAttribute('height');
         ctx.drawImage(video, 0 , 0, width, height);
+    };
+    
+    thx.transformCanvasToCanvas = function(source, target) {
+        var width = source.getAttribute('width');
+        var height = source.getAttribute('height');
+        var sourceCtx = source.getContext('2d');
+        var targetCtx = target.getContext('2d');
+        var imageData = sourceCtx.getImageData(0, 0, width, height);
+        targetCtx.putImageData(imageData, 0, 0);
     }
 })(thx, document);

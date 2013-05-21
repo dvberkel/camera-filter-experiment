@@ -4,13 +4,16 @@ var thx = thx || {};
     
     navigator.getUserMedia({ 'video' : true }, function(localMediaStream){
         var video = thx.createVideoFrom(localMediaStream);
-        var canvas = thx.createCanvasFrom(video, {width : 640, height : 480 });
+        var mirror = thx.createCanvasFrom(video, {width : 640, height : 480 });
+        var transform = thx.createCanvasFrom(video, { width : 640, height : 480 });
         var body = document.getElementsByTagName('body')[0];
         body.appendChild(video);
-        body.appendChild(canvas);
+        body.appendChild(mirror);
+        body.appendChild(transform);
         var continous = function(){
             requestAnimationFrame(continous);
-            thx.copyVideoToCanvas(video, canvas);
+            thx.copyVideoToCanvas(video, mirror);
+            thx.transformCanvasToCanvas(mirror, transform);
             
         };
         continous();
