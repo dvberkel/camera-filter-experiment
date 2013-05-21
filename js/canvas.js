@@ -27,12 +27,14 @@ var thx = thx || {};
         ctx.drawImage(video, 0 , 0, width, height);
     };
     
-    thx.transformCanvasToCanvas = function(source, target) {
+    thx.transformCanvasToCanvas = function(source, target, transformation) {
+        transformation = transformation || function(ctx, original){ return original; };
         var width = source.getAttribute('width');
         var height = source.getAttribute('height');
         var sourceCtx = source.getContext('2d');
         var targetCtx = target.getContext('2d');
         var imageData = sourceCtx.getImageData(0, 0, width, height);
-        targetCtx.putImageData(imageData, 0, 0);
+        var transform = transformation(targetCtx, imageData);
+        targetCtx.putImageData(transform, 0, 0);
     }
 })(thx, document);
