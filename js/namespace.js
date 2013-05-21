@@ -1,0 +1,3 @@
+var thx = (function(){ 
+    return {};
+})();
