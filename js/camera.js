@@ -13,7 +13,7 @@ var thx = thx || {};
         var continous = function(){
             requestAnimationFrame(continous);
             thx.copyVideoToCanvas(video, mirror);
-            thx.transformCanvasToCanvas(mirror, transform, thx.transformation.shrink);
+            thx.transformCanvasToCanvas(mirror, transform, thx.transformation.grayscale);
 
         };
         continous();
