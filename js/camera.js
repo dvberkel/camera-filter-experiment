@@ -1,7 +1,7 @@
 var thx = thx || {};
 (function(thx, window, document, undefined){
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
-    
+
     navigator.getUserMedia({ 'video' : true }, function(localMediaStream){
         var video = thx.createVideoFrom(localMediaStream);
         var mirror = thx.createCanvasFrom(video, {width : 640, height : 480 });
@@ -13,8 +13,8 @@ var thx = thx || {};
         var continous = function(){
             requestAnimationFrame(continous);
             thx.copyVideoToCanvas(video, mirror);
-            thx.transformCanvasToCanvas(mirror, transform, thx.transformation.grayscale);
-            
+            thx.transformCanvasToCanvas(mirror, transform, thx.transformation.shrink);
+
         };
         continous();
     });
