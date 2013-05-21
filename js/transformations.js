@@ -87,7 +87,7 @@ var thx = thx || {};
 	    var imageIndex = index / 4;
 	    var x = imageIndex % result.width;
 	    var y = imageIndex / result.width;
-	    result.data[index] = imageData.data[channel + x + y*imageDate.width];
+	    result.data[index] = imageData.data[channel + x + y*imageData.width];
 	}
 	return result;
     }
